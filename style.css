@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(180deg, #358675 14%, #d2d4c9 14%);
+    height: 940px;
+}
+
+.container {
+    width: 1500px;
+    height: inherit;
+    margin: 0 auto;
+}
+
+.box-wrapper {
+    margin: 25px 0;
+    height: calc(100% - 25px);
+    background: #eaeaea;
+}
