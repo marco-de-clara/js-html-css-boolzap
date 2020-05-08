@@ -18,5 +18,55 @@ body {
 .box-wrapper {
     margin: 25px 0;
     height: calc(100% - 25px);
-    background: #eaeaea;
+    background: lightgrey;
+
+}
+
+.chat-aside {
+    float: left;
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+#menu-aside,
+#menu-chat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #eaeaea;
+    color: #b1b1b1;
+}
+
+.menu-icons i {
+    font-size: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pop-up {
+    background: #8edafc;
+    padding: 10px;
+}
+
+.bell-wrapper {
+    width: 48px;
+    height: 48px;
+    background: #f1fcfe;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 48px;
+}
+
+.fa-bell-slash {
+    color: #8edafc;
+    font-size: 20px;
+}
+
+.chat-box {
+    float: left;
+    width: 65%;
+    height: 100%;
 }
