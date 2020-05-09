@@ -2,10 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: arial;
+}
+
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
 }
 
 body {
-    background: linear-gradient(180deg, #358675 14%, #d2d4c9 14%);
+    background: linear-gradient(180deg, #358675 15.3%, #d2d4c9 15.3%);
     height: 940px;
 }
 
@@ -37,7 +44,7 @@ body {
     justify-content: space-between;
     padding: 10px;
     background-color: #eaeaea;
-    color: #b1b1b1;
+    color: #919191;
 }
 
 .menu-icons i {
@@ -58,11 +65,50 @@ body {
     border-radius: 50%;
     text-align: center;
     line-height: 48px;
+    float: left;
 }
 
 .fa-bell-slash {
     color: #8edafc;
     font-size: 20px;
+}
+
+.popup-textarea {
+    float: left;
+    padding-left: 10px;
+    line-height: 22px;
+}
+
+.popup-textarea p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.popup-textarea a {
+    font-size: 12px;
+    color: #919191;
+}
+
+.searchbar-wrapper {
+    background: #fafafa;
+    padding: 10px;
+}
+
+.searchbar .fa-search {
+    padding: 9.5px 29.5px;
+    background: #fff;
+    border-right: 1px solid #fafafa;
+    float: left;
+    color: #919191;
+}
+
+.searchbar input {
+    outline: none;
+    border: 0;
+    width: 428px;
+    height: 35px;
+    font-size: 14px;
+    color: #919191;
 }
 
 .chat-box {
