@@ -107,7 +107,7 @@ body {
     width: 427px;
     height: 34px;
     font-size: 14px;
-    padding-left: 10px;
+    padding: 10px;
     color: #919191;
 }
 
@@ -243,4 +243,42 @@ body {
     width: 8px; 
     height: 13px;
     background: linear-gradient(125deg, #d5f9bb 50%, transparent 50%);
+}
+
+.send-box {
+    background: #f3eeea;
+    padding: 10px;
+}
+
+.emotes,
+.send-bar,
+.voice-btn {
+    float: left;
+}
+
+.emotes,
+.voice-btn {
+    padding: 10px;
+    color: #919191;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.send-bar {
+    margin: 0 10px;
+}
+
+.send-bar input {
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    height: 48px;
+    width: 842px;
+    font-size: 14px;
+    padding: 10px;
+    color: #919191;
+}
+
+.voice-btn {
+
 }
