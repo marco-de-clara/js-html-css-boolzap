@@ -46,19 +46,8 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 
-.receiver-info {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-#receiver-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-}
-
-#receiver-timestamp {
-    font-size: 13px;
+#user {
+    cursor: pointer;
 }
 
 .menu-icons i {
@@ -155,7 +144,7 @@ body {
 
 .name {
     font-size: 18px;
-    font-weight: bold;
+    color: #000;
 }
 
 .text-content {
@@ -166,6 +155,24 @@ body {
 .chat-wrapper {
     float: left;
     width: 65%;
+}
+
+#receiver {
+    cursor: pointer;
+}
+
+#receiver-info {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#receiver-name {
+    font-size: 18px;
+    color: #000;
+}
+
+#receiver-timestamp {
+    font-size: 13px;
 }
 
 .current-chat {
@@ -293,8 +300,4 @@ body {
     font-size: 14px;
     padding: 10px;
     color: #919191;
-}
-
-.voice-btn {
-
 }
