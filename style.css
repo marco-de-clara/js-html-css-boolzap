@@ -117,7 +117,7 @@ body {
 
 .log-box {
     overflow-y: scroll;
-    height: 724px;
+    height: 722px;
 }
 
 .message-highlight {
@@ -283,7 +283,7 @@ body {
 .voice-btn {
     padding: 10px;
     color: #919191;
-    font-size: 24px;
+    font-size: 22px;
     cursor: pointer;
 }
 
@@ -295,7 +295,7 @@ body {
     outline: none;
     border: 0;
     border-radius: 5px;
-    height: 48px;
+    height: 46px;
     width: 842px;
     font-size: 14px;
     padding: 10px;
