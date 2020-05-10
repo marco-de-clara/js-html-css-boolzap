@@ -46,6 +46,21 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 
+.receiver-info {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#receiver-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+#receiver-timestamp {
+    font-size: 13px;
+}
+
 .menu-icons i {
     font-size: 20px;
     margin: 0 5px;
@@ -140,6 +155,7 @@ body {
 
 .name {
     font-size: 18px;
+    font-weight: bold;
 }
 
 .text-content {
