@@ -281,18 +281,30 @@ body {
 
 .emotes,
 .send-bar,
-.voice-btn {
+.voice-btn,
+.send-btn {
     float: left;
 }
 
 .emotes,
-.voice-btn {
+.voice-btn,
+.send-btn {
     padding: 10px;
     color: #919191;
     font-size: 22px;
     cursor: pointer;
     width: 41px;
     text-align: center;
+}
+
+.voice-btn,
+.send-btn {
+    display: none;
+}
+
+.voice-btn.show,
+.send-btn.show {
+    display: inline-block;
 }
 
 .send-bar {

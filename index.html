@@ -134,17 +134,30 @@
                             <i class="far fa-grin-alt"></i>
                         </div>
                         <div class="send-bar">
-                            <input type="text" placeholder="Scrivi un messaggio">
+                            <input id="sendbar" type="text" placeholder="Scrivi un messaggio">
                         </div>
-                        <div class="voice-btn">
+                        <div class="voice-btn show">
                             <i class="fas fa-microphone"></i>
+                        </div><div class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="template">
-
+            <div class="message-wrapper">
+                <div class="message">
+                    <span class="tail-left"></span>
+                    <div class="timestamp"></div>
+                </div>
+            </div>
+            <div class="answer-wrapper">
+                <div class="answer">
+                    <span class="tail-right"></span>
+                    <div class="timestamp"></div>
+                </div>
+            </div>
         </div>
         <script src="main.js" charset="utf-8"></script>
     </body>
