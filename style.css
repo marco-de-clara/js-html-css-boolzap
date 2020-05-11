@@ -12,12 +12,14 @@
 }
 
 body {
-    background: linear-gradient(180deg, #358675 148px, #d2d4c9 148px);
+    background: linear-gradient(180deg, #358675 0, #358675 148px, #d2d4c9 148px, #d2d4c9 100vh);
+    display: flex;
+    height: 100vh;
 }
 
 .container {
     width: 1500px;
-    margin: 26px auto;
+    margin: 27px auto;
 }
 
 .box-wrapper {

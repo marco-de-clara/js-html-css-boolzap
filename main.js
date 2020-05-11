@@ -33,6 +33,7 @@ $('.send-btn').click(function() {
     var date = new Date();
     // write today's date as gg/mm/yyyy
     var today = getTodayDate(date);
+    var time = getTimeStamp(date);
     // get text message written in send bar
     var answer_text = $('#sendbar').val();
     // if the message to be sent is't empty and the chat container is empty
@@ -41,20 +42,24 @@ $('.send-btn').click(function() {
         printTodayDate(today);
         // print user's message
         printAnswer(answer_text);
+        printTimeStampAnswer(time);
     // if today's date is different from the date in the chat container and the last message in chat is a message from either the receiver or the user
     } else if(answer_text != 0 && today != $('.chat-container .date:last').text() && ( $('.chat-container').children().last().hasClass('message-wrapper') || $('.chat-container').children().last().hasClass('answer-wrapper') ) ) {
         // print today's date
         printTodayDate(today);
         // print user's message
         printAnswer(answer_text);
+        printTimeStampAnswer(time);
     // if the last message in chat is a message from the user
     } else if(answer_text != 0 && $('.chat-container').children().last().hasClass('answer-wrapper')) {
         // print a followup message
         printAnswerFollowUp(answer_text);
+        printTimeStampAnswer(time);
     // if the last message in chat is a message from the user
     } else if(answer_text != 0 && $('.chat-container').children().last().hasClass('message-wrapper')) {
         // print user's message
         printAnswer(answer_text);
+        printTimeStampAnswer(time);
     }
 });
 
@@ -62,6 +67,28 @@ $('.send-btn').click(function() {
 function getTodayDate(date) {
 
     return (date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear());
+}
+
+// concatenate current time into hh:mm
+function getTimeStamp(date) {
+
+    return (date.getHours() + ':' + date.getMinutes());
+}
+
+// print hh:mm into its label (receiver's messages)
+function printTimeStampMessage(time) {
+
+    var time_label = $('#template .timestamp').clone().appendTo('.chat-container .message-wrapper:last-child .message:last-child');
+
+    time_label.text(time);
+}
+
+// print hh:mm into its label (user's messages)
+function printTimeStampAnswer(time) {
+
+    var time_label = $('#template .timestamp').clone().appendTo('.chat-container .answer-wrapper:last-child .answer:last-child');
+
+    time_label.text(time);
 }
 
 // print gg/mm/yyyy into its label
