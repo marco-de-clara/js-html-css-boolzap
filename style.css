@@ -23,13 +23,12 @@ body {
 .box-wrapper {
     margin: 25px 0;
     width: 100%;
-    display: inline-block;
+    display: flex;
     background: #fff;
 
 }
 
 .chat-aside {
-    float: left;
     width: 35%;
     border-right: 1px solid rgba(0, 0, 0, .15);
     position: relative;
@@ -117,7 +116,7 @@ body {
 
 .log-box {
     overflow-y: scroll;
-    height: 722px;
+    height: calc(100% - 69px - 68px - 54px);
 }
 
 .message-highlight {
@@ -153,8 +152,7 @@ body {
 }
 
 .chat-wrapper {
-    float: left;
-    width: 65%;
+    width: 975px;
 }
 
 #receiver {
@@ -285,6 +283,8 @@ body {
     color: #919191;
     font-size: 22px;
     cursor: pointer;
+    width: 41px;
+    text-align: center;
 }
 
 .send-bar {
