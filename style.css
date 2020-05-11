@@ -17,11 +17,10 @@ body {
 
 .container {
     width: 1500px;
-    margin: 0 auto;
+    margin: 26px auto;
 }
 
 .box-wrapper {
-    margin: 25px 0;
     width: 100%;
     display: flex;
     background: #fff;
@@ -58,6 +57,11 @@ body {
 .pop-up {
     background: #8edafc;
     padding: 10px;
+    display: none;
+}
+
+.pop-up.show {
+    display: block;
 }
 
 .bell-wrapper {
@@ -86,7 +90,7 @@ body {
     font-weight: bold;
 }
 
-.popup-textarea a {
+#notice {
     font-size: 12px;
     color: #919191;
 }
@@ -97,7 +101,7 @@ body {
 }
 
 .searchbar .fa-search {
-    padding: 9px 29.5px;
+    padding: 8px 29.5px;
     background: #fff;
     border-right: 2px solid #fafafa;
     float: left;
@@ -108,7 +112,7 @@ body {
     outline: none;
     border: 0;
     width: 427px;
-    height: 34px;
+    height: 32px;
     font-size: 14px;
     padding: 10px;
     color: #919191;
@@ -116,7 +120,11 @@ body {
 
 .log-box {
     overflow-y: scroll;
-    height: calc(100% - 69px - 68px - 54px);
+    height: calc(100% - 69px - 68px - 52px);
+}
+
+.log-box.longer {
+    height: calc(100% - 69px - 52px);
 }
 
 .message-highlight {
@@ -300,4 +308,8 @@ body {
     font-size: 14px;
     padding: 10px;
     color: #919191;
+}
+
+#template {
+    display: none;
 }

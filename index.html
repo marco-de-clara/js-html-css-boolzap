@@ -5,6 +5,7 @@
         <title>Boolzap</title>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/3d747d6b6d.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div class="container">
@@ -20,13 +21,13 @@
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </div>
-                    <div class="pop-up clearfix">
+                    <div class="pop-up clearfix show">
                         <div class="bell-wrapper">
                             <i class="fas fa-bell-slash"></i>
                         </div>
                         <div class="popup-textarea">
                             <p>Ricevi notifiche di nuovi messaggi</p>
-                            <a href="">Attiva notifiche desktop</a>
+                            <a id="notice" href="#">Attiva notifiche desktop</a>
                         </div>
                     </div>
                     <div class="searchbar-wrapper">
@@ -142,5 +143,9 @@
                 </div>
             </div>
         </div>
+        <div id="template">
+
+        </div>
+        <script src="main.js" charset="utf-8"></script>
     </body>
 </html>
