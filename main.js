@@ -58,7 +58,7 @@ function getTodayDate(date) {
 // concatenate current time into hh:mm
 function getTimeStamp(date) {
 
-    return date.toLocaleTimeString('it-IT', {hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString(undefined, {hour12: false, hour: '2-digit', minute: '2-digit' });
 };
 
 // print hh:mm into its label (receiver's messages)
@@ -99,6 +99,22 @@ function printAnswerFollowUp(answer_text) {
     var answer_label = $('#template .answer').clone().appendTo('.chat-container .answer-wrapper:last-child');
 
     $('.chat-container .answer-wrapper:last-child .answer:last-child').append(answer_text);
+};
+
+// print receiver's message
+function printMessage(message_text) {
+
+    var message_label = $('#template .message-wrapper').clone().appendTo('.chat-container');
+
+    $('.chat-container .message-wrapper:last-child .message').append(message_text);
+};
+
+// print a follow up message under receiver's message
+function printMessageFollowUp(message_text) {
+    
+    var message_label = $('#template .message').clone().appendTo('.chat-container .message-wrapper:last-child');
+
+    $('.chat-container .message-wrapper:last-child .message:last-child').append(message_text);
 };
 
 // function that sends messages when send button is pressed
@@ -158,6 +174,8 @@ function sendMessageWithSendBtn() {
             // hide send button show mic button
             showMic();
         }
+        // the receiver replies after 1s
+        setTimeout(replyFromReceiver(time), 1000);
     }
 };
 
@@ -218,5 +236,13 @@ function sendMessageWithEnter(event) {
             // hide send button show mic button
             showMic();
         }
+        // the receiver replies after 1s
+        setTimeout(replyFromReceiver(time), 1000);
     }
 };
+
+// the receiver sends "Ciao!"
+function replyFromReceiver(time) {
+    printMessage('Ciao!');
+    printTimeStampMessage(time);
+}
