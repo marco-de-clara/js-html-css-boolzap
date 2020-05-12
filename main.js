@@ -1,5 +1,7 @@
 // catch click on 'Attiva notifiche desktop'
-$('#notice').click(function() {
+$('#notice').click(function(event) {
+    // stop page from refreshing
+    event.preventDefault();
     // display pop-up => none
     $('.pop-up').removeClass('show');
     // extend log box too fill the space
