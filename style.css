@@ -102,12 +102,13 @@ body {
     padding: 10px;
 }
 
-.searchbar .fa-search {
+.search-wrapper {
     padding: 8px 29.5px;
     background: #fff;
     border-right: 2px solid #fafafa;
     float: left;
     color: #919191;
+    cursor: pointer;
 }
 
 .searchbar input {
@@ -295,7 +296,7 @@ body {
     color: #919191;
     font-size: 22px;
     cursor: pointer;
-    width: 41px;
+    width: 81px;
     text-align: center;
 }
 
@@ -318,7 +319,7 @@ body {
     border: 0;
     border-radius: 5px;
     height: 46px;
-    width: 842px;
+    width: 773px;
     font-size: 14px;
     padding: 10px;
     color: #919191;

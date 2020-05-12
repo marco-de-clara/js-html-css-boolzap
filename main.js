@@ -175,7 +175,7 @@ function sendMessageWithSendBtn() {
             showMic();
         }
         // the receiver replies after 1s
-        setTimeout(replyFromReceiver(time), 1000);
+        setTimeout( function() {replyFromReceiver(time)}, 1000);
     }
 };
 
@@ -237,7 +237,7 @@ function sendMessageWithEnter(event) {
             showMic();
         }
         // the receiver replies after 1s
-        setTimeout(replyFromReceiver(time), 1000);
+        setTimeout( function() {replyFromReceiver(time)}, 1000);
     }
 };
 
