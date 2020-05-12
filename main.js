@@ -33,20 +33,70 @@ $('.send-bar').keypress(function(event) {
     sendMessageWithEnter(event);
 });
 
+// catch click on search button
+$('.search-btn').click(function() {
+    // get user's text in uppercase
+    var search_text = $('#searchbar').val().trim().toUpperCase();
+    // if user's text isn't empty
+    if(search_text.length != 0) {
+        // search every name for a match
+        $('p.name').each(function() {
+            // get name from log box in uppercase
+            var name_text = $(this).text().toUpperCase();
+            // verify if the name found equals to user's text
+            if(name_text == search_text) {
+                // show its parent
+                $(this).parents('.message-highlight').addClass('show');
+            } else {
+                // hide its parent
+                $(this).parents('.message-highlight').removeClass('show');
+            }
+        });
+        // show cancelsearch button
+        showCancel();
+    }
+});
+
+// catch click on cancelsearch button
+$('.cancelsearch-btn').click(function() {
+    // show search button
+    showSearch();
+    // clear user's text from searchbar
+    $('#searchbar').val('');
+    // show every discussion in log box
+    $('.message-highlight').addClass('show');
+});
+
 // hide send button and show mic button 
 function showMic() {
     // show mic button
     $('.voice-btn').addClass('show');
-    // hide paper send button
+    // hide send button
     $('.send-btn').removeClass('show');
 };
 
 // hide mic button and show send button
 function showSend() {
-    // show mic button
+    // hide mic button
     $('.voice-btn').removeClass('show');
-    // hide paper send button
+    // show send button
     $('.send-btn').addClass('show');
+};
+
+// hide cancelsearch button and show search button 
+function showSearch() {
+    // show search button
+    $('.search-btn').addClass('show');
+    // hide cancelsearch button
+    $('.cancelsearch-btn').removeClass('show');
+};
+
+// hide search button and show cancelsearch button  
+function showCancel() {
+    // hide search button
+    $('.search-btn').removeClass('show');
+    // show cancelsearch button
+    $('.cancelsearch-btn').addClass('show');
 };
 
 // concatenate current day, month and year into dd/mm/yyyy
@@ -66,7 +116,7 @@ function printTimeStampMessage(time) {
 
     var time_label = $('#template .timestamp').clone().appendTo('.chat-container .message-wrapper:last-child .message:last-child');
 
-    time_label.text(time);
+    time_label.append(time);
 };
 
 // print hh:mm into its label (user's messages)
@@ -246,3 +296,5 @@ function replyFromReceiver(time) {
     printMessage('Ciao!');
     printTimeStampMessage(time);
 }
+
+
