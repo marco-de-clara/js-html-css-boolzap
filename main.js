@@ -101,6 +101,10 @@ $('.chat-container').on('click', '.delete', function() {
 $('.contact-highlight').click(function() {
     // deactivate every chat displayed
     $('.chat-display').removeClass('active');
+    // deselect every contact
+    $('.contact-highlight').removeClass('selected');
+    // select this contact
+    $(this).addClass('selected');
     // remove name in menu chat
     $('#receiver-name').empty();
     // get name from selected contact
@@ -109,6 +113,8 @@ $('.contact-highlight').click(function() {
     $('#receiver-name').append(contact_name);
     // activate chat assigned to the contact name
     $('.chat-display[data-chat="' + contact_name + '"]').addClass('active');
+
+
 });
 
 // hide send button and show mic button 

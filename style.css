@@ -155,11 +155,11 @@ body {
 }
 
 .contact-highlight.selected {
-    background: #e9ebea;
+    background: #d9dbda;
 }
 
 .contact-highlight:hover {
-    background: #d9dbda;
+    background: #e9ebea;
 }
 
 .contact-textarea {
