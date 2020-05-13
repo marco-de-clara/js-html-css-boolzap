@@ -4,8 +4,8 @@ $('#notice').click(function(event) {
     event.preventDefault();
     // display pop-up => none
     $('.pop-up').removeClass('show');
-    // extend log box too fill the space
-    $('.log-box').toggleClass('longer');
+    // extend contacts box too fill the space
+    $('.contacts').toggleClass('longer');
 });
 
 // catch click on send bar to switch from mic button to paper send button
@@ -43,15 +43,15 @@ $('.search-btn').click(function() {
     if(search_text.length != 0) {
         // search every name for a match
         $('p.name').each(function() {
-            // get name from log box in uppercase
+            // get name from contacts box in uppercase
             var name_text = $(this).text().toUpperCase();
             // verify if the name found equals to user's text
             if(name_text == search_text) {
                 // show its parent
-                $(this).parents('.message-highlight').addClass('show');
+                $(this).parents('.contact-light').addClass('show');
             } else {
                 // hide its parent
-                $(this).parents('.message-highlight').removeClass('show');
+                $(this).parents('.contact-highlight').removeClass('show');
             }
         });
         // show cancelsearch button
@@ -65,8 +65,8 @@ $('.cancelsearch-btn').click(function() {
     showSearch();
     // clear user's text from searchbar
     $('#searchbar').val('');
-    // show every discussion in log box
-    $('.message-highlight').addClass('show');
+    // show every discussion in contacts box
+    $('.contact-highlight').addClass('show');
 });
 
 // catch click on chevron to display a dropdown menu
@@ -95,6 +95,20 @@ $('.chat-container').on('click', '.delete', function() {
         // remove the receiver's message
         $(this).parents('.message').remove();
     }
+});
+
+// catch click on contact in contacts box
+$('.contact-highlight').click(function() {
+    // deactivate every chat displayed
+    $('.chat-display').removeClass('active');
+    // remove name in menu chat
+    $('#receiver-name').empty();
+    // get name from selected contact
+    var contact_name = $(this).find('p.name').text();
+    // set receiver name in menu chat
+    $('#receiver-name').append(contact_name);
+    // activate chat assigned to the contact name
+    $('.chat-display[data-chat="' + contact_name + '"]').addClass('active');
 });
 
 // hide send button and show mic button 
@@ -321,9 +335,9 @@ function sendMessageWithEnter(event) {
     }
 };
 
-// the receiver sends "Ciao!"
+// the receiver sends "Ok!"
 function replyFromReceiver(time) {
-    printMessage('Ciao!');
+    printMessage('Ok!');
     printTimeStampMessage(time);
 }
 

@@ -129,37 +129,40 @@ body {
     color: #919191;
 }
 
-.log-box {
+.contacts {
     overflow-y: scroll;
     height: calc(100% - 69px - 68px - 52px);
 }
 
-.log-box.longer {
+.contacts.longer {
     height: calc(100% - 69px - 52px);
 }
 
-.message-highlight {
+.contact-highlight {
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, .15);
     cursor: pointer;
     display: none;
 }
 
-.message-highlight.show {
+.contact-highlight.show {
     display: block;
 }
 
-.message-highlight .fa-user-circle {
+.contact-highlight .fa-user-circle {
     float: left;
     color: #919191;
 }
 
-.selected,
-.message-highlight:hover {
+.contact-highlight.selected {
     background: #e9ebea;
 }
 
-.message-textarea {
+.contact-highlight:hover {
+    background: #d9dbda;
+}
+
+.contact-textarea {
     float: left;
     padding: 10px;
     line-height: 22px;
@@ -172,7 +175,6 @@ body {
 
 .text-content {
     font-size: 13px;
-    color: #b1b1b1;
 }
 
 .chat-wrapper {
@@ -197,12 +199,17 @@ body {
     font-size: 13px;
 }
 
-.current-chat {
+.chat-display {
     overflow-y: scroll;
     height: 778px;
     background-image: url('img/wallpaper.jpg');
     background-color: rgba(231, 221, 211, .7);
     background-size: 50%;
+    display: none;
+}
+
+.chat-display.active {
+    display: block;
 }
 
 .chat-container {
