@@ -156,59 +156,73 @@ function getTimeStamp(date) {
 };
 
 // print hh:mm into its label (receiver's messages)
-function printTimeStampMessage(time) {
+function printTimeStampMessage(receiver, time) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    var time_label = $('#template .timestamp').clone().appendTo('.chat-container .message-wrapper:last-child .message:last-child');
+    var time_label = $('#template .timestamp').clone().appendTo(receiver_label + ' .chat-container .message-wrapper:last-child .message:last-child');
     // write content inside the clone
     time_label.append(time);
 };
 
 // print hh:mm into its label (user's messages)
-function printTimeStampAnswer(time) {
+function printTimeStampAnswer(receiver, time) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    var time_label = $('#template .timestamp').clone().appendTo('.chat-container .answer-wrapper:last-child .answer:last-child');
+    var time_label = $('#template .timestamp').clone().appendTo(receiver_label + ' .chat-container .answer-wrapper:last-child .answer:last-child');
     // write content inside the clone
     time_label.text(time);
 };
 
 // print gg/mm/yyyy into its label
-function printTodayDate(today) {
+function printTodayDate(receiver, today) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    $('#template .date-wrapper').clone().appendTo('.chat-container');
+    $('#template .date-wrapper').clone().appendTo(receiver_label + ' .chat-container');
     // write content inside the clone
-    $('.chat-container .date-wrapper:last-child .date:last-child').append(today);
+    $(receiver_label + ' .chat-container .date-wrapper:last-child .date:last-child').append(today);
 };
 
 // print user's message
-function printAnswer(answer_text) {
+function printAnswer(receiver, answer_text) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    $('#template .answer-wrapper').clone().appendTo('.chat-container');
+    $('#template .answer-wrapper').clone().appendTo(receiver_label + ' .chat-container');
     // write content inside the clone
-    $('.chat-container .answer-wrapper:last-child .answer').append(answer_text);
+    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer').append(answer_text);
 };
 
 // print a follow up message under user's message
-function printAnswerFollowUp(answer_text) {
+function printAnswerFollowUp(receiver, answer_text) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    $('#template .answer').clone().appendTo('.chat-container .answer-wrapper:last-child');
+    $('#template .answer').clone().appendTo(receiver_label + ' .chat-container .answer-wrapper:last-child');
     // write content inside the clone
-    $('.chat-container .answer-wrapper:last-child .answer:last-child').append(answer_text);
+    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer:last-child').append(answer_text);
 };
 
 // print receiver's message
-function printMessage(message_text) {
+function printMessage(receiver, message_text) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    $('#template .message-wrapper').clone().appendTo('.chat-container');
+    $('#template .message-wrapper').clone().appendTo(receiver_label + ' .chat-container');
     // write content inside the clone
-    $('.chat-container .message-wrapper:last-child .message').append(message_text);
+    $(receiver_label + ' .chat-container .message-wrapper:last-child .message').append(message_text);
 };
 
 // print a follow up message under receiver's message
-function printMessageFollowUp(message_text) {
+function printMessageFollowUp(receiver, message_text) {
+    // select receiver's chat 
+    var receiver_label = '.chat-display[data-chat="' + receiver + '"]';
     // clone template and append it to chat container
-    $('#template .message').clone().appendTo('.chat-container .message-wrapper:last-child');
+    $('#template .message').clone().appendTo(receiver_label + ' .chat-container .message-wrapper:last-child');
     // write content inside the clone
-    $('.chat-container .message-wrapper:last-child .message:last-child').append(message_text);
+    $(receiver_label + ' .chat-container .message-wrapper:last-child .message:last-child').append(message_text);
 };
 
 // function that sends messages when send button is pressed
@@ -221,16 +235,18 @@ function sendMessageWithSendBtn() {
     var time = getTimeStamp(date);
     // get text message written in send bar
     var answer_text = $('#sendbar').val();
+    //get current receiver name
+    var receiver = $('#receiver-name').text();
     // if the message to be sent is't empty 
     if(answer_text.length != 0) {
         // if the chat container is empty
         if($('.chat-container').children().length == 0 ) {
             // print today's date
-            printTodayDate(today);
+            printTodayDate(receiver, today);
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -238,11 +254,11 @@ function sendMessageWithSendBtn() {
         // if today's date is different from the date in the chat container and the last message in chat is a message from either the receiver or the user
         } else if(today != $('.chat-container .date:last').text() && ( $('.chat-container').children().last().hasClass('message-wrapper') || $('.chat-container').children().last().hasClass('answer-wrapper') ) ) {
             // print today's date
-            printTodayDate(today);
+            printTodayDate(receiver, today);
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -250,9 +266,9 @@ function sendMessageWithSendBtn() {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('answer-wrapper')) {
             // print a followup message
-            printAnswerFollowUp(answer_text);
+            printAnswerFollowUp(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -260,16 +276,16 @@ function sendMessageWithSendBtn() {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('message-wrapper')) {
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
             showMic();
         }
         // the receiver replies after 1s
-        setTimeout( function() {replyFromReceiver(time)}, 1000);
+        setTimeout( function() {replyFromReceiver(receiver, time)}, 1000);
     }
 };
 
@@ -283,16 +299,18 @@ function sendMessageWithEnter(event) {
     var time = getTimeStamp(date);
     // get text message written in send bar
     var answer_text = $('#sendbar').val();
+    //get current receiver name
+    var receiver = $('#receiver-name').text();
     // if the message to be sent is't empty 
     if(answer_text.length != 0 && event.which == 13) {
         //if the chat container is empty
         if($('.chat-container').children().length == 0 ) {
             // print today's date
-            printTodayDate(today);
+            printTodayDate(receiver, today);
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -300,11 +318,11 @@ function sendMessageWithEnter(event) {
         // if today's date is different from the date in the chat container and the last message in chat is a message from either the receiver or the user
         } else if(today != $('.chat-container .date:last').text() && ( $('.chat-container').children().last().hasClass('message-wrapper') || $('.chat-container').children().last().hasClass('answer-wrapper') ) ) {
             // print today's date
-            printTodayDate(today);
+            printTodayDate(receiver, today);
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -312,9 +330,9 @@ function sendMessageWithEnter(event) {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('answer-wrapper')) {
             // print a followup message
-            printAnswerFollowUp(answer_text);
+            printAnswerFollowUp(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
@@ -322,23 +340,23 @@ function sendMessageWithEnter(event) {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('message-wrapper')) {
             // print user's message
-            printAnswer(answer_text);
+            printAnswer(receiver, answer_text);
             // print timestamp
-            printTimeStampAnswer(time);
+            printTimeStampAnswer(receiver, time);
             // clear message
             $('#sendbar').val('');
             // hide send button show mic button
             showMic();
         }
         // the receiver replies after 1s
-        setTimeout( function() {replyFromReceiver(time)}, 1000);
+        setTimeout( function() {replyFromReceiver(receiver, time)}, 1000);
     }
 };
 
 // the receiver sends "Ok!"
-function replyFromReceiver(time) {
-    printMessage('Ok!');
-    printTimeStampMessage(time);
+function replyFromReceiver(receiver, time) {
+    printMessage(receiver, 'Ok!');
+    printTimeStampMessage(receiver, time);
 }
 
 
