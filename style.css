@@ -26,6 +26,7 @@ body {
     width: 100%;
     display: flex;
     background: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6);
 
 }
 
@@ -270,6 +271,7 @@ body {
     align-items: flex-end;
 }
 
+
 .timestamp {
     position: absolute;
     bottom: 5px;
@@ -294,6 +296,47 @@ body {
     width: 8px; 
     height: 13px;
     background: linear-gradient(125deg, #d5f9bb 50%, transparent 50%);
+}
+
+.fas.fa-chevron-down {
+    color: #919191;
+    position: absolute;
+    right: 0px;
+    font-size: 20px;
+    padding: 10px;
+    top: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.info-menu {
+    position: absolute;
+    width: 150px;
+    background: #fff;
+    border-radius: 4px;
+    top: 35px;
+    left: 75px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6);
+    display: none;
+    z-index: 10;
+}
+
+.info-menu.show {
+    display: block;
+}
+
+.info-menu p {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.info-menu p:hover {
+    display: block;
+    background: rgba(73, 73, 73, .1);
+}
+
+.answer:hover .fas.fa-chevron-down {
+    display: inline-block;
 }
 
 .send-box {

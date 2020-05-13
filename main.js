@@ -69,6 +69,26 @@ $('.cancelsearch-btn').click(function() {
     $('.message-highlight').addClass('show');
 });
 
+// catch click on chevron to display a dropdown menu
+$('.chat-container').on('click', '.fa-chevron-down', function() {
+    $(this).siblings('.info-menu').toggleClass('show');
+});
+
+// catch click document to close dropdown menu
+$(document).mouseup(function(event) {
+    // if the target is neither the dropdown menu, nor the chevron icon, nor a descendant
+    if ( !$('.info-menu').is(event.target) && !$('.fa-chevron-down').is(event.target) && $('.info-menu').has(event.target).length == 0 ) {
+        // remove show class from dropdown menu
+        $('.info-menu').removeClass('show');
+    }
+});
+
+// catch click on delete class to remove the message selected
+$('.chat-container').on('click', '.delete', function() {
+    $(this).parents('.answer').remove();
+});
+
+
 // hide send button and show mic button 
 function showMic() {
     // show mic button
@@ -156,7 +176,7 @@ function printAnswerFollowUp(answer_text) {
 // print receiver's message
 function printMessage(message_text) {
     // clone template and append it to chat container
-    var message_label = $('#template .message-wrapper').clone().appendTo('.chat-container');
+    $('#template .message-wrapper').clone().appendTo('.chat-container');
     // write content inside the clone
     $('.chat-container .message-wrapper:last-child .message').append(message_text);
 };
