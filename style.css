@@ -209,8 +209,13 @@ body {
     margin: 0 auto;
 }
 
+.date-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
 .date {
-    margin: 0 calc(50% - 55px);
     padding: 15px;
     background-color: #e1f3fb;
     color: rgba(0, 0, 0, .4);
@@ -223,19 +228,19 @@ body {
     font-size: 14px;
 }
 
-.date,
-.message-wrapper {
-    float: left;
-}
-
 .message-wrapper,
 .answer-wrapper {
-    clear: both;
     color: rgba(0, 0, 0, .6);
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.message-wrapper {
+    align-items: flex-start;
 }
 
 .answer-wrapper {
-    float: right;
+    align-items: flex-end;
 }
 
 .date,
@@ -256,11 +261,13 @@ body {
 .message {
     background-color: #fff;
     border-top-left-radius: 0;
+    align-items: flex-start;
 }
 
 .answer {
     background-color: #d5f9bb;
     border-top-right-radius: 0;
+    align-items: flex-end;
 }
 
 .timestamp {

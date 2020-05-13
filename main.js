@@ -115,57 +115,57 @@ function getTimeStamp(date) {
 
 // print hh:mm into its label (receiver's messages)
 function printTimeStampMessage(time) {
-
+    // clone template and append it to chat container
     var time_label = $('#template .timestamp').clone().appendTo('.chat-container .message-wrapper:last-child .message:last-child');
-
+    // write content inside the clone
     time_label.append(time);
 };
 
 // print hh:mm into its label (user's messages)
 function printTimeStampAnswer(time) {
-
+    // clone template and append it to chat container
     var time_label = $('#template .timestamp').clone().appendTo('.chat-container .answer-wrapper:last-child .answer:last-child');
-
+    // write content inside the clone
     time_label.text(time);
 };
 
 // print gg/mm/yyyy into its label
 function printTodayDate(today) {
-
-    var date_label = $('#template .date').clone().appendTo('.chat-container');
-
-    date_label.text(today);
+    // clone template and append it to chat container
+    $('#template .date-wrapper').clone().appendTo('.chat-container');
+    // write content inside the clone
+    $('.chat-container .date-wrapper:last-child .date:last-child').append(today);
 };
 
 // print user's message
 function printAnswer(answer_text) {
-
-    var answer_label = $('#template .answer-wrapper').clone().appendTo('.chat-container');
-
+    // clone template and append it to chat container
+    $('#template .answer-wrapper').clone().appendTo('.chat-container');
+    // write content inside the clone
     $('.chat-container .answer-wrapper:last-child .answer').append(answer_text);
 };
 
 // print a follow up message under user's message
 function printAnswerFollowUp(answer_text) {
-    
-    var answer_label = $('#template .answer').clone().appendTo('.chat-container .answer-wrapper:last-child');
-
+    // clone template and append it to chat container
+    $('#template .answer').clone().appendTo('.chat-container .answer-wrapper:last-child');
+    // write content inside the clone
     $('.chat-container .answer-wrapper:last-child .answer:last-child').append(answer_text);
 };
 
 // print receiver's message
 function printMessage(message_text) {
-
+    // clone template and append it to chat container
     var message_label = $('#template .message-wrapper').clone().appendTo('.chat-container');
-
+    // write content inside the clone
     $('.chat-container .message-wrapper:last-child .message').append(message_text);
 };
 
 // print a follow up message under receiver's message
 function printMessageFollowUp(message_text) {
-    
-    var message_label = $('#template .message').clone().appendTo('.chat-container .message-wrapper:last-child');
-
+    // clone template and append it to chat container
+    $('#template .message').clone().appendTo('.chat-container .message-wrapper:last-child');
+    // write content inside the clone
     $('.chat-container .message-wrapper:last-child .message:last-child').append(message_text);
 };
 
@@ -298,5 +298,6 @@ function replyFromReceiver(time) {
     printMessage('Ciao!');
     printTimeStampMessage(time);
 }
+
 
 
