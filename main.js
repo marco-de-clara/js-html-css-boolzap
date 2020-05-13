@@ -85,9 +85,17 @@ $(document).mouseup(function(event) {
 
 // catch click on delete class to remove the message selected
 $('.chat-container').on('click', '.delete', function() {
-    $(this).parents('.answer').remove();
+    var parent = $(this).parents('.answer');
+    // if this (delete class) has a parent with answer class
+    if($(this).parents('.answer').length == 1) {
+        // remove the user's message
+        parent.remove();
+    // else its parent has message class
+    } else {
+        // remove the receiver's message
+        $(this).parents('.message').remove();
+    }
 });
-
 
 // hide send button and show mic button 
 function showMic() {

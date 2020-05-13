@@ -335,6 +335,7 @@ body {
     background: rgba(73, 73, 73, .1);
 }
 
+.message:hover .fas.fa-chevron-down,
 .answer:hover .fas.fa-chevron-down {
     display: inline-block;
 }
