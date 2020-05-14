@@ -263,7 +263,15 @@ function printMessageFollowUp(receiver, message_text) {
 
 // the receiver sends "Ok!"
 function replyFromReceiver(receiver, time) {
-    printMessage(receiver, 'Ok!');
+    //get current receiver name
+    var receiver = $('#receiver-name').text();
+    // receiver's chat display 
+    var chat_display_path = '.chat-display[data-chat="' + receiver + '"]';
+    if($(chat_display_path + ' .chat-container').children().last().hasClass('answer-wrapper')) {
+        printMessage(receiver, 'Ok!');
+    } else {
+        printMessageFollowUp(receiver, 'Ok!');
+    }
     printTimeStampMessage(receiver, time);
     // push message to receiver's contact in contact list
     pushLastMsg(receiver);
@@ -309,6 +317,8 @@ function sendMessageWithSendBtn() {
     var answer_text = $('#sendbar').val();
     //get current receiver name
     var receiver = $('#receiver-name').text();
+    // receiver's chat display 
+    var chat_display_path = '.chat-display[data-chat="' + receiver + '"]';
     // if the message to be sent is't empty 
     if(answer_text.length != 0) {
         // if the chat container is empty
