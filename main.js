@@ -263,15 +263,20 @@ function printMessageFollowUp(receiver, message_text) {
 
 // the receiver sends "Ok!"
 function replyFromReceiver(receiver, time) {
-    //get current receiver name
+    // get current receiver name
     var receiver = $('#receiver-name').text();
     // receiver's chat display 
     var chat_display_path = '.chat-display[data-chat="' + receiver + '"]';
+    // if the last message in chat is a message from the user  
     if($(chat_display_path + ' .chat-container').children().last().hasClass('answer-wrapper')) {
-        printMessage(receiver, 'Ok!');
+        // the receiver sends a new message
+        printMessage(receiver, libroDelleRisposte()); 
+    // else the last message was sent by the receiver
     } else {
-        printMessageFollowUp(receiver, 'Ok!');
+        // the receiver sends a follow-up message
+        printMessageFollowUp(receiver, libroDelleRisposte());
     }
+    // print timestamp
     printTimeStampMessage(receiver, time);
     // push message to receiver's contact in contact list
     pushLastMsg(receiver);
@@ -305,6 +310,18 @@ function pushLastMsg(receiver) {
     $(last_msg_path).find('p.last-message').append(last_msg);
 };
 
+// return a random sentence
+function libroDelleRisposte() {
+    // array with 9 sentences from il libro delle risposte
+    var reply = ["Ok!", "Considerala un'opportunità.", "Insisti e ce la farai.", "Scoprirai tutto ciò di cui hai bisogno.", "Non ha importanza.", "Ne vale la pena.", "Chiarisciti le idee prima.", "Impegnati al massimo.", "Sii paziente.", "Nessuno è perfetto."];
+    
+    return reply[randomInRange(0, reply.length - 1)];
+}
+
+function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // function that sends messages when send button is pressed
 function sendMessageWithSendBtn() {
     // get today's date
@@ -319,7 +336,7 @@ function sendMessageWithSendBtn() {
     var receiver = $('#receiver-name').text();
     // receiver's chat display 
     var chat_display_path = '.chat-display[data-chat="' + receiver + '"]';
-    // if the message to be sent is't empty 
+    // if the message to be sent isn't empty 
     if(answer_text.length != 0) {
         // if the chat container is empty
         if($(chat_display_path + ' .chat-container').children().length == 0 ) {
@@ -387,7 +404,7 @@ function sendMessageWithEnter(event) {
     var receiver = $('#receiver-name').text();
     // receiver's chat display 
     var chat_display_path = '.chat-display[data-chat="' + receiver + '"]';
-    // if the message to be sent is't empty 
+    // if the message to be sent isn't empty 
     if(answer_text.length != 0 && event.which == 13) {
         //if the chat container is empty
         if($(chat_display_path + ' .chat-container').children().length == 0 ) {
