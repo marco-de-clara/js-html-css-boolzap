@@ -182,7 +182,7 @@ function showCancel() {
 // concatenate current day, month and year into dd/mm/yyyy
 function getTodayDate(date) {
 
-    return date.toLocaleDateString('it-IT');
+    return date.toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
 };
 
 // concatenate current time into hh:mm
