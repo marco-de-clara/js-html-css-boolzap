@@ -42,32 +42,32 @@
                         </div>
                     </div>
                     <div class="contacts">
-                        <div class="contact-highlight clearfix selected show">
+                        <div class="contact-highlight clearfix show" data-contact-name="Andrea">
                             <i class="fas fa-user-circle fa-4x"></i>
                             <div class="contact-textarea">
                                 <p class="name">Andrea</p>
-                                <p class="text-content">Lorem ipsum dolor.</p>
+                                <p class="last-message"></p>
                             </div>
                         </div>
-                        <div class="contact-highlight clearfix show">
+                        <div class="contact-highlight clearfix show" data-contact-name="Beatrice">
                             <i class="fas fa-user-circle fa-4x"></i>
                             <div class="contact-textarea">
                                 <p class="name">Beatrice</p>
-                                <p class="text-content">Lorem ipsum dolor.</p>
+                                <p class="last-message"></p>
                             </div>
                         </div>
-                        <div class="contact-highlight clearfix show">
+                        <div class="contact-highlight clearfix show" data-contact-name="Carlo">
                             <i class="fas fa-user-circle fa-4x"></i>
                             <div class="contact-textarea">
                                 <p class="name">Carlo</p>
-                                <p class="text-content">Lorem ipsum dolor.</p>
+                                <p class="last-message"></p>
                             </div>
                         </div>
-                        <div class="contact-highlight clearfix show">
+                        <div class="contact-highlight clearfix show" data-contact-name="Daniele">
                             <i class="fas fa-user-circle fa-4x"></i>
                             <div class="contact-textarea">
                                 <p class="name">Daniele</p>
-                                <p class="text-content">Lorem ipsum dolor.</p>
+                                <p class="last-message"></p>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div id="receiver">
                             <i class="fas fa-user-circle fa-3x"></i>
                             <div id="receiver-info">
-                                <p id="receiver-name">Andrea</p>
+                                <p id="receiver-name"></p>
                                 <p id="receiver-timestamp">ultimo accesso ieri alle 18:00</p>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <!-- CHAT ANDREA -->
-                    <div class="chat-display active" data-chat="Andrea">
+                    <div class="chat-display" data-chat="Andrea">
                         <div class="chat-container">
                             <div class="date-wrapper">
                                 <div class="date">Ieri</div>
@@ -102,7 +102,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Ciao sono Andrea.
+                                    <div class="text-content">Ciao sono Andrea.</div>
                                 </div>
                                 <div class="message">
                                     <i class="fas fa-chevron-down"></i>
@@ -112,7 +112,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Come va?
+                                    <div class="text-content">Come va?</div>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Ciao sono Beatrice.
+                                    <div class="text-content">Ciao sono Beatrice.</div>
                                 </div>
                                 <div class="message">
                                     <i class="fas fa-chevron-down"></i>
@@ -142,7 +142,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Come va?
+                                    <div class="text-content">Come va?</div>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Ciao sono Carlo.
+                                    <div class="text-content">Ciao sono Carlo.</div>
                                 </div>
                                 <div class="message">
                                     <i class="fas fa-chevron-down"></i>
@@ -172,7 +172,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Come va?
+                                    <div class="text-content">Come va?</div>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Ciao sono Daniele.
+                                    <div class="text-content">Ciao sono Daniele.</div>
                                 </div>
                                 <div class="message">
                                     <i class="fas fa-chevron-down"></i>
@@ -202,7 +202,7 @@
                                     </div>
                                     <span class="tail-left"></span>
                                     <div class="timestamp">18:00</div>
-                                    Come va?
+                                    <div class="text-content">Come va?</div>
                                 </div>
                             </div>
                         </div>
@@ -240,6 +240,7 @@
                         <p class="delete">Elimina messaggio</p>
                     </div>
                     <span class="tail-left"></span>
+                    <div class="text-content"></div>
                 </div>
             </div>
 
@@ -251,6 +252,7 @@
                         <p class="delete">Elimina messaggio</p>
                     </div>
                     <span class="tail-right"></span>
+                    <div class="text-content"></div>
                 </div>
             </div>
         </div>

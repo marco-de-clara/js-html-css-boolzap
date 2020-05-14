@@ -1,3 +1,27 @@
+// default settings: first in contact list is selected
+// number of contacts
+var max = 4;
+//set default settings
+for(var i = 0; i < max; i++) {
+    // get contact name
+    var receiver_name = $('p.name').eq(i).text();
+    // get contact's chat path
+    var receiver_path = '.chat-display[data-chat="' + receiver_name + '"]';
+    // get last message in contact's chat
+    var last_msg = $(receiver_path + ' .chat-container .message-wrapper:last-child .message:last-child .text-content').text();
+    // set last message in contacts list
+    $('p.last-message').eq(i).append(last_msg);
+    // if first contact
+    if(i == 0) {
+        // set contact name in menu chat 
+        $('#receiver-name').append(receiver_name);
+        // select this contact
+        $('p.name').eq(i).parents('.contact-highlight').addClass('selected');
+        // activate chat assigned to that contact name
+        $(receiver_path).addClass('active');
+    }
+};
+
 // catch click on 'Attiva notifiche desktop'
 $('#notice').click(function(event) {
     // stop page from refreshing
@@ -26,12 +50,12 @@ $(document).mouseup(function(event) {
 
 // catch click on send button
 // nts.: the receiver sends .messages, while the user sends .answers 
-$('.send-btn').click(function() {
+$(document).on('click', '.send-btn', function() {
     sendMessageWithSendBtn();
 });
 
 // catch keypress enter while sendbar is focused
-$('.send-bar').keypress(function(event) {
+$(document).on('keypress', '.send-bar', function(event) {
     sendMessageWithEnter(event);
 });
 
@@ -111,10 +135,8 @@ $('.contact-highlight').click(function() {
     var contact_name = $(this).find('p.name').text();
     // set receiver name in menu chat
     $('#receiver-name').append(contact_name);
-    // activate chat assigned to the contact name
+    // activate chat assigned to that contact name
     $('.chat-display[data-chat="' + contact_name + '"]').addClass('active');
-
-
 });
 
 // hide send button and show mic button 
@@ -198,7 +220,7 @@ function printAnswer(receiver, answer_text) {
     // clone template and append it to chat container
     $('#template .answer-wrapper').clone().appendTo(receiver_label + ' .chat-container');
     // write content inside the clone
-    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer').append(answer_text);
+    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer  .text-content').append(answer_text);
 };
 
 // print a follow up message under user's message
@@ -208,7 +230,7 @@ function printAnswerFollowUp(receiver, answer_text) {
     // clone template and append it to chat container
     $('#template .answer').clone().appendTo(receiver_label + ' .chat-container .answer-wrapper:last-child');
     // write content inside the clone
-    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer:last-child').append(answer_text);
+    $(receiver_label + ' .chat-container .answer-wrapper:last-child .answer:last-child  .text-content').append(answer_text);
 };
 
 // print receiver's message
@@ -218,7 +240,7 @@ function printMessage(receiver, message_text) {
     // clone template and append it to chat container
     $('#template .message-wrapper').clone().appendTo(receiver_label + ' .chat-container');
     // write content inside the clone
-    $(receiver_label + ' .chat-container .message-wrapper:last-child .message').append(message_text);
+    $(receiver_label + ' .chat-container .message-wrapper:last-child .message .text-content').append(message_text);
 };
 
 // print a follow up message under receiver's message
@@ -228,7 +250,43 @@ function printMessageFollowUp(receiver, message_text) {
     // clone template and append it to chat container
     $('#template .message').clone().appendTo(receiver_label + ' .chat-container .message-wrapper:last-child');
     // write content inside the clone
-    $(receiver_label + ' .chat-container .message-wrapper:last-child .message:last-child').append(message_text);
+    $(receiver_label + ' .chat-container .message-wrapper:last-child .message:last-child .text-content').append(message_text);
+};
+
+// the receiver sends "Ok!"
+function replyFromReceiver(receiver, time) {
+    printMessage(receiver, 'Ok!');
+    printTimeStampMessage(receiver, time);
+    // push message to receiver's contact in contact list
+    pushLastMsg(receiver);
+};
+
+// push last user message to receiver's contact in contact list
+function pushLastAnswer(receiver) {
+    // get contact's chat path
+    var receiver_path = '.chat-display[data-chat="' + receiver + '"]';
+    // get last message path
+    var last_msg_path = '.contact-highlight[data-contact-name="' + receiver + '"]';
+    // erase previous last message in contact list
+    $(last_msg_path + ' p.last-message').empty();
+    // get last message in contact's chat
+    var last_msg = $(receiver_path + ' .chat-container .answer-wrapper:last-child .answer:last-child .text-content').text();
+    // set new last message in contacts list
+    $(last_msg_path).find('p.last-message').append(last_msg);
+};
+
+// push last receiver message to receiver's contact in contact list
+function pushLastMsg(receiver) {
+    // get contact's chat path
+    var receiver_path = '.chat-display[data-chat="' + receiver + '"]';
+    // get last message path
+    var last_msg_path = '.contact-highlight[data-contact-name="' + receiver + '"]';
+    // erase previous last message in contact list
+    $(last_msg_path + ' p.last-message').empty();
+    // get last message in contact's chat
+    var last_msg = $(receiver_path + ' .chat-container .message-wrapper:last-child .message:last-child .text-content').text();
+    // set new last message in contacts list
+    $(last_msg_path).find('p.last-message').append(last_msg);
 };
 
 // function that sends messages when send button is pressed
@@ -250,7 +308,7 @@ function sendMessageWithSendBtn() {
             // print today's date
             printTodayDate(receiver, today);
             // print user's message
-            printAnswer(receiver, answer_text);
+            printAnswer(receiver, answer_text);            
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -282,7 +340,7 @@ function sendMessageWithSendBtn() {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('message-wrapper')) {
             // print user's message
-            printAnswer(receiver, answer_text);
+            printAnswer(receiver, answer_text);           
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -290,6 +348,8 @@ function sendMessageWithSendBtn() {
             // hide send button show mic button
             showMic();
         }
+        // push message to receiver's contact in contact list
+        pushLastAnswer(receiver);
         // the receiver replies after 1s
         setTimeout( function() {replyFromReceiver(receiver, time)}, 1000);
     }
@@ -314,7 +374,7 @@ function sendMessageWithEnter(event) {
             // print today's date
             printTodayDate(receiver, today);
             // print user's message
-            printAnswer(receiver, answer_text);
+            printAnswer(receiver, answer_text);            
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -326,7 +386,7 @@ function sendMessageWithEnter(event) {
             // print today's date
             printTodayDate(receiver, today);
             // print user's message
-            printAnswer(receiver, answer_text);
+            printAnswer(receiver, answer_text);           
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -336,7 +396,7 @@ function sendMessageWithEnter(event) {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('answer-wrapper')) {
             // print a followup message
-            printAnswerFollowUp(receiver, answer_text);
+            printAnswerFollowUp(receiver, answer_text);            
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -346,7 +406,7 @@ function sendMessageWithEnter(event) {
         // if the last message in chat is a message from the user
         } else if($('.chat-container').children().last().hasClass('message-wrapper')) {
             // print user's message
-            printAnswer(receiver, answer_text);
+            printAnswer(receiver, answer_text);           
             // print timestamp
             printTimeStampAnswer(receiver, time);
             // clear message
@@ -354,16 +414,9 @@ function sendMessageWithEnter(event) {
             // hide send button show mic button
             showMic();
         }
+        // push message to receiver's contact in contact list
+        pushLastAnswer(receiver);
         // the receiver replies after 1s
         setTimeout( function() {replyFromReceiver(receiver, time)}, 1000);
     }
 };
-
-// the receiver sends "Ok!"
-function replyFromReceiver(receiver, time) {
-    printMessage(receiver, 'Ok!');
-    printTimeStampMessage(receiver, time);
-}
-
-
-
