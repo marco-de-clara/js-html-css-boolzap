@@ -13,6 +13,10 @@ for(var i = 0; i < max; i++) {
     $('p.last-message').eq(i).append(last_msg);
     // if first contact
     if(i == 0) {
+        // get avatar path from contact list selected
+         var src_contact = $('#avatar-' + receiver_name.toLowerCase()).attr('src');
+        // set that avatar path to avatar in menu chat
+        $('#current-avatar').attr('src', src_contact);
         // set contact name in menu chat 
         $('#receiver-name').append(receiver_name);
         // select this contact
@@ -129,6 +133,10 @@ $('.contact-highlight').click(function() {
     $('.contact-highlight').removeClass('selected');
     // select this contact
     $(this).addClass('selected');
+    // get avatar path from contact list selected
+    var src_contact = $(this).find('img').attr('src');
+    // set that avatar path to avatar in menu chat
+    $('#current-avatar').attr('src', src_contact);
     // remove name in menu chat
     $('#receiver-name').empty();
     // get name from selected contact

@@ -51,6 +51,11 @@ body {
     cursor: pointer;
 }
 
+#avatar-user {
+    height: 48px;
+    vertical-align: middle;
+}
+
 .menu-icons i {
     font-size: 20px;
     margin: 0 5px;
@@ -162,6 +167,14 @@ body {
     background: #e9ebea;
 }
 
+#avatar-andrea,
+#avatar-beatrice,
+#avatar-carlo,
+#avatar-daniele {
+    height: 64px;
+    float: left;
+}
+
 .contact-textarea {
     float: left;
     padding: 10px;
@@ -183,6 +196,12 @@ body {
 
 #receiver {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#current-avatar {
+    height: 48px;
 }
 
 #receiver-info {
