@@ -63,8 +63,32 @@ $(document).on('keypress', '.send-bar', function(event) {
     sendMessageWithEnter(event);
 });
 
-// catch click on search button
-$('.search-btn').click(function() {
+// // catch click on search button
+// $('.search-btn').click(function() {
+//     // get user's text in uppercase
+//     var search_text = $('#searchbar').val().trim().toUpperCase();
+//     // if user's text isn't empty
+//     if(search_text.length != 0) {
+//         // search every name for a match
+//         $('p.name').each(function() {
+//             // get name from contacts box in uppercase
+//             var name_text = $(this).text().toUpperCase();
+//             // verify if the name found equals to user's text
+//             if(name_text == search_text) {
+//                 // show its parent
+//                 $(this).parents('.contact-light').addClass('show');
+//             } else {
+//                 // hide its parent
+//                 $(this).parents('.contact-highlight').removeClass('show');
+//             }
+//         });
+//         // show cancelsearch button
+//         showCancel();
+//     }
+// });
+
+// catch keypress on search button
+$('#searchbar').keyup(function() {
     // get user's text in uppercase
     var search_text = $('#searchbar').val().trim().toUpperCase();
     // if user's text isn't empty
@@ -74,16 +98,21 @@ $('.search-btn').click(function() {
             // get name from contacts box in uppercase
             var name_text = $(this).text().toUpperCase();
             // verify if the name found equals to user's text
-            if(name_text == search_text) {
+            if(name_text.includes(search_text)) {
                 // show its parent
                 $(this).parents('.contact-light').addClass('show');
             } else {
                 // hide its parent
                 $(this).parents('.contact-highlight').removeClass('show');
-            }
+            }      
         });
         // show cancelsearch button
         showCancel();
+    } else {
+        // show every discussion in contacts box
+        $('.contact-highlight').addClass('show');
+        // show search button
+         showSearch();
     }
 });
 
