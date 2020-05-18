@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/3d747d6b6d.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     </head>
     <body>
         <div class="container">
@@ -224,14 +225,12 @@
                 </div>
             </div>
         </div>
-
-        <div id="template">
-            <div class="timestamp"></div>
-
+        <script id="template-date" type="text/x-handlebars-template">
             <div class="date-wrapper">
-                <div class="date"></div>
+                <div class="date">{{date}}</div>
             </div>
-
+        </script>
+        <script id="template-msgwrap" type="text/x-handlebars-template">
             <div class="message-wrapper">
                 <div class="message">
                     <i class="fas fa-chevron-down"></i>
@@ -240,10 +239,24 @@
                         <p class="delete">Elimina messaggio</p>
                     </div>
                     <span class="tail-left"></span>
-                    <div class="text-content"></div>
+                    <div class="timestamp">{{time}}</div>
+                    <div class="text-content">{{text}}</div>
                 </div>
             </div>
-
+        </script>
+        <script id="template-msg" type="text/x-handlebars-template">
+            <div class="message">
+                <i class="fas fa-chevron-down"></i>
+                <div class="info-menu">
+                    <p>Info messaggio</p>
+                    <p class="delete">Elimina messaggio</p>
+                </div>
+                <span class="tail-left"></span>
+                <div class="timestamp">{{time}}</div>
+                <div class="text-content">{{text}}</div>
+            </div>
+        </script>
+        <script id="template-answerwrap" type="text/x-handlebars-template">
             <div class="answer-wrapper">
                 <div class="answer">
                     <i class="fas fa-chevron-down"></i>
@@ -252,10 +265,23 @@
                         <p class="delete">Elimina messaggio</p>
                     </div>
                     <span class="tail-right"></span>
-                    <div class="text-content"></div>
+                    <div class="timestamp">{{time}}</div>
+                    <div class="text-content">{{text}}</div>
                 </div>
             </div>
-        </div>
+        </script>
+        <script id="template-answer" type="text/x-handlebars-template">
+            <div class="answer">
+                <i class="fas fa-chevron-down"></i>
+                <div class="info-menu">
+                    <p>Info messaggio</p>
+                    <p class="delete">Elimina messaggio</p>
+                </div>
+                <span class="tail-right"></span>
+                <div class="timestamp">{{ time }}</div>
+                <div class="text-content">{{ text }}</div>
+            </div>
+        </script>
 
         <script src="main.js" charset="utf-8"></script>
     </body>
